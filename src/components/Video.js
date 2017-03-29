@@ -5,16 +5,18 @@ import {
   StyleSheet,
 } from 'react-native';
 
-export default class Video extends Component {
-  render() {
+// export default class Video extends Component {
+export default ({match}) => {
+ // render(props) {
+    console.log(match.params.filename);
     return (
-        <NativeVideo source={{uri: "file:///sdcard/jwbai_CHS_201604_01_r360P.mp4"}}   // Can be a URL or a local file.
+        <NativeVideo source={{uri: "file:///sdcard/" + match.params.filename}}   // Can be a URL or a local file.
             ref={(ref) => this.player = ref}
             resizeMode="contain"
             style={styles.backgroundVideo}
             />
     );
-  }
+//  }
 }
 
 const styles = StyleSheet.create({
