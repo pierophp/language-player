@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import { NativeRouter, Route, Link } from 'react-router-native';
+import {Scene, Router} from 'react-native-router-flux';
 
 import Video from './src/components/Video';
 import ListFiles from './src/components/ListFiles';
@@ -26,34 +26,13 @@ const About = () => (
 export default class LanguagePlayer extends Component {
   render() {
     return (
-      <NativeRouter>
-        <View style={styles.container}>
-          <View style={styles.nav}>
-            <Link
-              to="/"
-              underlayColor='#f0f4f7'
-              style={styles.navItem}>
-                <Text>Home</Text>
-            </Link>
-            <Link
-              to="/about"
-              underlayColor='#f0f4f7'
-              style={styles.navItem}>
-                <Text>About</Text>
-            </Link>
-            <Link
-              to="/video/teste"
-              underlayColor='#f0f4f7'
-              style={styles.navItem}>
-                <Text>Video</Text>
-            </Link>
-          </View>
-
-          <Route exact path="/" component={ListFiles}/>
-          <Route path="/about" component={About}/>
-          <Route path="/video/:filename" component={Video}/>
-        </View>
-      </NativeRouter>
+      <Router>
+         <Scene key="root">
+          <Scene key="video" component={Video} title="Video"/>
+          <Scene key="about" component={Register} title="About"/>
+          <Scene key="home" component={ListFiles}/>
+        </Scene>
+      </Router>
     );
   }
 }
